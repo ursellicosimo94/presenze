@@ -1,0 +1,46 @@
+services:
+  backend:
+    env_file: .env
+
+    build:
+      context: .
+      dockerfile: backend/docker/${ENV:-dev}/Dockerfile
+    entrypoint: bash backend/docker/${ENV:-dev}/entrypoint.sh
+    working_dir: /app
+
+    volumes:
+      - ./backend:/app
+
+    # NETWORKING
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    hostname: ${BACKEND_HOSTNAME:-backend.presenze.local}
+    networks:
+      presenze:
+        aliases:
+          - ${BACKEND_HOSTNAME:-backend.presenze.local}
+
+  frontend:
+    env_file: .env
+
+    build:
+      context: .
+      dockerfile: frontend/docker/${ENV:-dev}/Dockerfile
+    entrypoint: bash frontend/docker/${ENV:-dev}/entrypoint.sh
+    working_dir: /app
+
+    volumes:
+      - ./frontend:/app
+
+    # NETWORKING
+    ports:
+      - "${FRONTEND_PORT:-3000}:3000"
+    hostname: ${FRONTEND_HOSTNAME:-frontend.presenze.local}
+    networks:
+      presenze:
+        aliases:
+          - ${FRONTEND_HOSTNAME:-frontend.presenze.local}
+
+networks:
+  presenze:
+    driver: bridge
