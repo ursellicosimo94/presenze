@@ -1,3 +1,5 @@
+name: presenze
+
 services:
   backend:
     env_file: .env
@@ -5,8 +7,11 @@ services:
     build:
       context: .
       dockerfile: backend/docker/${ENV:-dev}/Dockerfile
-    entrypoint: bash backend/docker/${ENV:-dev}/entrypoint.sh
+    entrypoint: bash /app/docker/${ENV:-dev}/entrypoint.sh
     working_dir: /app
+    depends_on:
+      - proxy
+    restart: unless-stopped
 
     volumes:
       - ./backend:/app
@@ -14,6 +19,7 @@ services:
     # NETWORKING
     ports:
       - "${BACKEND_PORT:-8000}:8000"
+      - "5678:5678" # Debugger port
     hostname: ${BACKEND_HOSTNAME:-backend.presenze.local}
     networks:
       presenze:
@@ -26,8 +32,12 @@ services:
     build:
       context: .
       dockerfile: frontend/docker/${ENV:-dev}/Dockerfile
-    entrypoint: bash frontend/docker/${ENV:-dev}/entrypoint.sh
+    entrypoint: bash /app/docker/${ENV:-dev}/entrypoint.sh
     working_dir: /app
+    depends_on:
+      - backend
+      - proxy
+    restart: unless-stopped
 
     volumes:
       - ./frontend:/app
@@ -40,6 +50,26 @@ services:
       presenze:
         aliases:
           - ${FRONTEND_HOSTNAME:-frontend.presenze.local}
+
+  proxy:
+    env_file: .env
+
+    image: nginx:stable-alpine
+    working_dir: /etc/nginx
+    restart: unless-stopped
+
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./proxy/static/:/usr/share/nginx/html:ro
+
+    # NETWORKING
+    ports:
+      - "${PROXY_PORT:-80}:80"
+    hostname: ${PROXY_HOSTNAME:-proxy.presenze.local}
+    networks:
+      presenze:
+        aliases:
+          - ${PROXY_HOSTNAME:-proxy.presenze.local}
 
 networks:
   presenze:

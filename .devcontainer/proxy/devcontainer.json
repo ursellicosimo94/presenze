@@ -1,7 +1,7 @@
 {
   "name": "Proxy",
   "dockerComposeFile": [
-    "../../docker-compose.yml"
+    "../../docker-compose-dev.yml"
   ],
   "service": "proxy",
   "workspaceFolder": "/etc/nginx",
