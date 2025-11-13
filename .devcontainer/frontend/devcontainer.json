@@ -1,0 +1,42 @@
+{
+  "name": "Frontend",
+  "dockerComposeFile": [
+    "../../docker-compose.yml"
+  ],
+  "service": "frontend",
+  "workspaceFolder": "/app",
+  "shutdownAction": "stopCompose",
+  "runServices": [
+    "backend",
+    "frontend",
+    "proxy"
+  ],
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        "ClemensPeters.format-json",
+        "leizongmin.node-module-intellisense",
+        "ms-vscode.js-debug-nightly",
+        "dbaeumer.vscode-eslint",
+        "moppitz.vscode-extension-auto-import",
+        "ms-vscode.vscode-typescript-next",
+        "msjsdiag.vscode-react-native",
+        "streetsidesoftware.code-spell-checker",
+        "firefox-devtools.vscode-firefox-debug",
+        "SeyyedKhandon.firacode",
+        "ms-vscode.extension-test-runner",
+        "Janne252.fontawesome-autocomplete",
+        "donjayamanne.githistory",
+        "huizhou.githd",
+        "redjue.git-commit-plugin",
+        "ms-vsliveshare.vsliveshare",
+        "yzhang.markdown-all-in-one",
+        "christian-kohler.npm-intellisense",
+        "esbenp.prettier-vscode",
+        "SimonSiefke.svg-preview",
+        "Gruntfuggly.todo-tree"
+      ]
+    }
+  }
+}

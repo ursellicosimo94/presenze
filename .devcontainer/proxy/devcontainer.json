@@ -1,0 +1,20 @@
+{
+  "name": "Proxy",
+  "dockerComposeFile": [
+    "../../docker-compose.yml"
+  ],
+  "service": "proxy",
+  "workspaceFolder": "/etc/nginx",
+  "shutdownAction": "stopCompose",
+  "runServices": [
+    "backend",
+    "frontend",
+    "proxy"
+  ],
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": []
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "Backend",
+  "dockerComposeFile": [
+    "../../docker-compose.yml"
+  ],
+  "service": "backend",
+  "workspaceFolder": "/app",
+  "shutdownAction": "stopCompose",
+  "runServices": [
+    "backend",
+    "frontend",
+    "proxy"
+  ],
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        "njpwerner.autodocstring",
+        "streetsidesoftware.code-spell-checker",
+        "SeyyedKhandon.firacode",
+        "donjayamanne.githistory",
+        "huizhou.githd",
+        "redjue.git-commit-plugin",
+        "ms-vsliveshare.vsliveshare",
+        "yzhang.markdown-all-in-one",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "ms-python.debugpy",
+        "ms-python.vscode-python-envs",
+        "Bar.python-import-helper",
+        "KevinRose.vsc-python-indent",
+        "mgesbert.python-path",
+        "qwtel.sqlite-viewer",
+        "Gruntfuggly.todo-tree",
+        "ms-vscode.extension-test-runner",
+        "esbenp.prettier-vscode",
+        "inferrinizzard.prettier-sql-vscode"
+      ]
+    }
+  }
+}
