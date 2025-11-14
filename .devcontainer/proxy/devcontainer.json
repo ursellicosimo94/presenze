@@ -6,6 +6,10 @@
   "service": "proxy",
   "workspaceFolder": "/etc/nginx",
   "shutdownAction": "stopCompose",
+  "initializeCommand": [
+    "bash",
+    "scripts/init_project.sh"
+  ],
   "runServices": [
     "backend",
     "frontend",

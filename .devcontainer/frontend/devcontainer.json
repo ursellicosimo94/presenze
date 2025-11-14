@@ -11,6 +11,10 @@
     "frontend",
     "proxy"
   ],
+  "initializeCommand": [
+    "bash",
+    "scripts/init_project.sh"
+  ],
   "customizations": {
     "vscode": {
       "settings": {},
