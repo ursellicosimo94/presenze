@@ -38,7 +38,10 @@
         "Gruntfuggly.todo-tree",
         "ms-vscode.extension-test-runner",
         "esbenp.prettier-vscode",
-        "inferrinizzard.prettier-sql-vscode"
+        "inferrinizzard.prettier-sql-vscode",
+        "DavidAnson.vscode-markdownlint",
+        "bierner.markdown-mermaid",
+        "yzane.markdown-pdf"
       ]
     }
   }
