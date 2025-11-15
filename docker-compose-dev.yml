@@ -9,12 +9,11 @@ services:
       dockerfile: backend/docker/${ENV:-dev}/Dockerfile
     entrypoint: bash /app/docker/${ENV:-dev}/entrypoint.sh
     working_dir: /app
-    depends_on:
-      - proxy
     restart: unless-stopped
 
     volumes:
       - ./backend:/app
+      - ./backend/docker/${ENV:-dev}/.zsh_history:/root/.zsh_history:ro
       - ~/.gitconfig:/root/.gitconfig:ro
       - ~/.ssh/:/root/.ssh/:ro
 
@@ -38,11 +37,11 @@ services:
     working_dir: /app
     depends_on:
       - backend
-      - proxy
     restart: unless-stopped
 
     volumes:
       - ./frontend:/app
+      - ./frontend/docker/${ENV:-dev}/.zsh_history:/root/.zsh_history:ro
       - ~/.gitconfig:/root/.gitconfig:ro
       - ~/.ssh/:/root/.ssh/:ro
 
@@ -61,6 +60,9 @@ services:
     image: nginx:stable-alpine
     working_dir: /etc/nginx
     restart: unless-stopped
+    depends_on:
+      - backend
+      - frontend
 
     volumes:
       - ./proxy/nginx.conf:/etc/nginx/nginx.conf:ro
