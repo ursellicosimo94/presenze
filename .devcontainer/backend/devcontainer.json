@@ -41,7 +41,8 @@
         "inferrinizzard.prettier-sql-vscode",
         "DavidAnson.vscode-markdownlint",
         "bierner.markdown-mermaid",
-        "yzane.markdown-pdf"
+        "yzane.markdown-pdf",
+        "streetsidesoftware.code-spell-checker-italian"
       ]
     }
   }
